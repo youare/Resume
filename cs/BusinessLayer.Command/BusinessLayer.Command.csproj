@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="AggregateFactories\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Commands\Test\" />
+    <Folder Include="CommandHandlers\Test\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data.Writer\Data.Writer.csproj" />
+    <ProjectReference Include="..\Domain.SharedKernel\Domain.SharedKernel.csproj" />
+    <ProjectReference Include="..\Domain.Resume\Domain.Resume.csproj" />
+  </ItemGroup>
+
+</Project>

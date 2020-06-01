@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+  id="ResumeApi"
+  targetNamespace="http://dd.com/resume_api.xsd"
+  elementFormDefault="qualified"
+  xmlns="http://dd.com/resume_api.xsd"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+
+  <xs:simpleType name="LogLevel">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Verbose" />
+      <xs:enumeration value="Debug" />
+      <xs:enumeration value="Information" />
+      <xs:enumeration value="Warning" />
+      <xs:enumeration value="Error" />
+      <xs:enumeration value="Fatal" />
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="LogEntry">
+    <xs:all>
+      <xs:element name="Source" type="xs:string" />
+      <xs:element name="MinimumLevel" type="LogLevel" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="LogEntryList">
+    <xs:sequence>
+      <xs:element name="LogEntry" type="LogEntry" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="LogConfig">
+    <xs:all>
+      <xs:element name="LogEntryList" type="LogEntryList" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="UriEntry">
+    <xs:all>
+      <xs:element name="Scheme" type="xs:string" />
+      <xs:element name="Host" type="xs:string" />
+      <xs:element name="Port" type="xs:integer" />
+    </xs:all>
+  </xs:complexType>
+  
+  <xs:complexType name="UriConfig">
+    <xs:all>
+      <xs:element name="Authority" type="UriEntry" />
+      <xs:element name="Self" type="UriEntry" />
+      <xs:element name="Guardian" type="UriEntry" />
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="HealthCheckEntry">
+    <xs:all>
+      <xs:element name="DegradeThreshold" type="xs:float" />
+      <xs:element name="UnhealthyThreshold" type="xs:float" />
+      <xs:element name="IgnoreCommaSeperated" type="xs:string" minOccurs="0" maxOccurs="1"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="HealthCheckConfig">
+    <xs:all>
+      <xs:element name="DelayInSeconds" type="xs:integer" />
+      <xs:element name="intervalInSeconds" type="xs:integer" />
+      <xs:element name="TolenranceInSeconds" type="xs:integer" />
+      <xs:element name="ServerCpu" type="HealthCheckEntry" />
+      <xs:element name="ServerMemory" type="HealthCheckEntry" />
+      <xs:element name="ServerDisk" type="HealthCheckEntry" />
+      <xs:element name="Memory" type="HealthCheckEntry" />
+    </xs:all>
+  </xs:complexType>
+
+
+  <xs:complexType name="AppConfig">
+    <xs:all>
+      <xs:element name="ApplicationName" type="xs:string" />
+      <xs:element name="InstanceId" type="xs:string" />
+      <xs:element name="ConnectionString" type="xs:string" />
+      <xs:element name="HealthCheckConfig" type="HealthCheckConfig" />
+      <xs:element name="UriConfig" type="UriConfig" />
+      <xs:element name="LogConfig" type="LogConfig" />
+    </xs:all>
+  </xs:complexType>
+  <xs:element name="ResumeApi" type="AppConfig" />
+</xs:schema>

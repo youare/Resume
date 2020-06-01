@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ResumeApi xmlns="http://dd.com/resume_api.xsd">
+  <ApplicationName>ResumeApi</ApplicationName>
+  <InstanceId>ResumeApiInstance</InstanceId>
+  <ConnectionString>Host=localhost;Database=Resume;User ID=postgres;Password=sa</ConnectionString>
+
+  <HealthCheckConfig>
+    <TolenranceInSeconds>125</TolenranceInSeconds>
+    <DelayInSeconds>10</DelayInSeconds>
+    <intervalInSeconds>60</intervalInSeconds>
+    <Memory>
+      <DegradeThreshold>70</DegradeThreshold>
+      <UnhealthyThreshold>90</UnhealthyThreshold>
+    </Memory>
+    <ServerCpu>
+      <DegradeThreshold>70</DegradeThreshold>
+      <UnhealthyThreshold>90</UnhealthyThreshold>
+    </ServerCpu>
+    <ServerMemory>
+      <DegradeThreshold>70</DegradeThreshold>
+      <UnhealthyThreshold>90</UnhealthyThreshold>
+    </ServerMemory>
+    <ServerDisk>
+      <DegradeThreshold>70</DegradeThreshold>
+      <UnhealthyThreshold>90</UnhealthyThreshold>
+    </ServerDisk>
+  </HealthCheckConfig>
+
+  <UriConfig>
+    <Authority>
+      <Scheme>https</Scheme>
+      <Host>localhost</Host>
+      <Port>5000</Port>
+    </Authority>
+    <Self>
+      <Scheme>http</Scheme>
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </Self>
+    <Guardian>
+      <Scheme>http</Scheme>
+      <Host>localhost</Host>
+      <Port>5001</Port>
+    </Guardian>
+  </UriConfig>
+  
+  <LogConfig>
+    <LogEntryList>
+      <LogEntry>
+        <Source>Default</Source>
+        <MinimumLevel>Information</MinimumLevel>
+      </LogEntry>
+      <LogEntry>
+        <Source>Microsoft</Source>
+        <MinimumLevel>Warning</MinimumLevel>
+      </LogEntry>
+        <LogEntry>
+            <Source>Microsoft.Extensions.Diagnostics.HealthChecks</Source>
+            <MinimumLevel>Fatal</MinimumLevel>
+        </LogEntry>
+        <LogEntry>
+            <Source>CorrelationId.CorrelationIdMiddleware</Source>
+            <MinimumLevel>Warning</MinimumLevel>
+        </LogEntry>
+    </LogEntryList>
+  </LogConfig>
+</ResumeApi>
